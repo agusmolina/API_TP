@@ -1,0 +1,140 @@
+ {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+       "$id": "http://example.com/root.json",
+       "type": "object",
+       "title": "The Root Schema",
+       "required": [
+         "_id",
+         "Nombre",
+        "Genero",
+        "Descripcion",
+        "Reparto",
+        "Imagen",
+        "Trailer",
+        "Fecha",
+        "Puntaje",
+        "Novedad",
+       "Duracion"
+     ],
+      "properties": {
+        "_id": {
+          "$id": "#/properties/_id",
+          "type": "integer",
+          "title": "The _id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "Nombre": {
+          "$id": "#/properties/Nombre",
+          "type": "string",
+          "title": "The Nombre Schema",
+          "default": "",
+          "examples": [
+            "Crepusculo"
+          ],
+       "pattern": "^(.*)$"
+        },
+        "Genero": {
+          "$id": "#/properties/Genero",
+          "type": "string",
+         "title": "The Genero Schema",
+          "default": "",
+          "examples": [
+            "Adolescente"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Descripcion": {
+          "$id": "#/properties/Descripcion",
+          "type": "string",
+          "title": "The Descripcion Schema",
+          "default": "",
+          "examples": [
+            "Drama de vampiros"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Reparto": {
+          "$id": "#/properties/Reparto",
+          "type": "array",
+          "title": "The Reparto Schema",
+          "items": {
+            "$id": "#/properties/Reparto/items",
+            "type": "string",
+            "title": "The Items Schema",
+            "default": "",
+            "examples": [
+              "Kristen Stewart",
+              "Robert Pattinson",
+           "Taylor Laurtner",
+              "Nikki Reed",
+              "Rosalie Hale",
+              "Ashley Greene"
+            ],
+            "pattern": "^(.*)$"
+          }
+        },
+        "Imagen": {
+          "$id": "#/properties/Imagen",
+          "type": "string",
+          "title": "The Imagen Schema",
+          "default": "",
+          "examples": [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThQcVESw6lUO_J_fI7p70MdjJKkNLA__5dEz5loBuxYfF9DLajYqPtgjUT&s"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "Trailer": {
+          "$id": "#/properties/Trailer",
+          "type": "string",
+          "title": "The Trailer Schema",
+          "default": "",
+          "examples": [
+            "https://encrypted-vtbn1.gstatic.com/video?q=tbn:ANd9GcQprWOS9rAllkv2Dt3k9iQEgIAF--AxRNaubMGZWQbbplQ-_4kE"
+          ],
+          "pattern": "^(.*)$"
+        },
+       "Fecha": {
+         "$id": "#/properties/Fecha",
+         "type": "string",
+         "title": "The Fecha Schema",
+         "default": "",
+         "examples": [
+           "01/01/2009"
+         ],
+         "pattern": "^(.*)$"
+       },
+       "Puntaje": {
+         "$id": "#/properties/Puntaje",
+         "type": "string",
+         "title": "The Puntaje Schema",
+         "default": "",
+         "examples": [
+           "2"
+         ],
+        "pattern": "^(.*)$"
+       },
+       "Novedad": {
+         "$id": "#/properties/Novedad",
+         "type": "boolean",
+         "title": "The Novedad Schema",
+         "default": false,
+         "examples": [
+           false
+       ]
+       },
+       "Duracion": {
+         "$id": "#/properties/Duracion",
+         "type": "string",
+         "title": "The Duracion Schema",
+         "default": "",
+         "examples": [
+           "2"
+         ],
+         "pattern": "^(.*)$"
+      }
+     }
+  }
