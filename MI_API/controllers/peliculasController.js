@@ -30,10 +30,14 @@ module.exports = {
         console.log(pelicula)
 
         if(typeof pelicula[0]._id === 'undefined' || pelicula[0] == null){
-            resultado = NoEncontrado + id.toString();
+            resultado = { error: true,
+                          status: 404,
+                          message: NoEncontrado + id.toString()}
         }else{
             await CollectionPeliculas.deleteOne({_id: id});
-            resultado = "La pelicula: "+pelicula[0].Nombre+" se ha eliminado satisfactoriamente"
+            resultado = { error: false,
+                          status: success,
+                          message: "La pelicula: "+pelicula[0].Nombre+" se ha eliminado satisfactoriamente"}
         }
         return resultado;
         
