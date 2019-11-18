@@ -32,8 +32,6 @@ module.exports = {
         pelicula                = await this.buscarPelicula(id),
         resultado; 
 
-        console.log(pelicula)
-
         if(typeof pelicula[0]._id === 'undefined' || pelicula[0] == null){
             resultado = { error: true,
                           status: 404,
@@ -41,7 +39,7 @@ module.exports = {
         }else{
             await CollectionPeliculas.deleteOne({_id: id});
             resultado = { error: false,
-                          status: success,
+                          status: "success",
                           message: "La pelicula: "+pelicula[0].Nombre+" se ha eliminado satisfactoriamente"}
         }
         return resultado;
@@ -68,7 +66,7 @@ module.exports = {
      },
      Recomendaciones: async function PeliculasRecomendadas(id){
         var usuarios = await client.usuarios();
-        var usuario  = await usuarios.findOne({},{_id: id});
+        var usuario  = await usuarios.findOne({},{_id: parseInt(id)});
 
         var peliculas        = await client.movies();
         var peliculaFavorita = await peliculas.findOne({'Nombre': usuario.PeliculaFavorita});

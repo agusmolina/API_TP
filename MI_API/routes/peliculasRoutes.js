@@ -51,9 +51,8 @@ module.exports = function(app){
     })
 
     app.post('/AnadirPelicula', async(req,res)=>{
-
-        var pelicula = await Controlador.buscarPelicula(req.body._id);
-        if(pelicula[0]._id != null && typeof pelicula[0] != 'undefined'){
+        var pelicula = await Controlador.buscarPelicula(pa rseInt(req.body._id));
+        if(pelicula._id != null && typeof pelicula != 'undefined'){
           res.send(RespuestaInvalidad_Pelicula);
         }else{
            var respuesta = await Controlador.anadirPelicula(req.body);
