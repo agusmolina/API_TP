@@ -7,6 +7,12 @@ const Controlador            = require('../controllers/peliculasController');
   codigo: 503,
   mensaje: 'La Pelicula ya existe en la base de datos'
  }
+
+ const RespuestaInvalidad_NoExiste = {
+  error: true,
+  codigo: 503,
+  mensaje: 'La Pelicula no existe en la base de datos'
+ }
  const Pelicula_No_Existe = {
    error:true,
    codigo:404,
@@ -29,7 +35,7 @@ module.exports = function(app){
     });
     app.get('/BuscarPelicula/:id',async(req,res)=>{
       var movies = await Controlador.buscarPelicula(req.params.id);
-      res.send(movies);
+      res.send(movies[0]);
     });
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
       var Recomendaciones = await Controlador.Recomendaciones(req.params.id);

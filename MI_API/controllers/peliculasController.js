@@ -58,7 +58,7 @@ module.exports = {
 },
      buscarPelicula: async function buscarPelicula(id){
         var movies = await client.movies()
-        var mipelicula = await movies.find({"_id":id}).toArray();
+        var mipelicula = await movies.find({"_id":parseInt(id)}).toArray();
         return mipelicula;
      },
      Recomendaciones: async function PeliculasRecomendadas(id){
@@ -66,11 +66,8 @@ module.exports = {
         var usuario  = await usuarios.findOne({},{_id: id});
 
         var peliculas        = await client.movies();
-        var peliculaFavorita = await peliculas.find({'Nombre': usuario.PeliculaFavorita}).toArray();
-        var Recomendaciones  = await peliculas.find({'Genero': peliculaFavorita[0].Genero}).
-        toArray().filter(item =>{
-          return item.Nombre !=  usuario.PeliculaFavorita
-        });
+        var peliculaFavorita = await peliculas.findOne({'Nombre': usuario.PeliculaFavorita});
+        var Recomendaciones  = await peliculas.find({'Genero': peliculaFavorita.Genero}).toArray();
 
         return Recomendaciones;
      }
