@@ -35,12 +35,21 @@ module.exports = function(app){
     });
     app.get('/BuscarPelicula/:id',async(req,res)=>{
       var movies = await Controlador.buscarPelicula(req.params.id);
-      res.send(movies[0]);
+      if(typeof movies[0] === 'undefined'){
+        res.send(RespuestaInvalidad_NoExiste)
+      }else{
+        res.send(movies[0]);
+      }
     });
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
       var Recomendaciones = await Controlador.Recomendaciones(req.params.id);
       res.send(Recomendaciones);
     })
+    app.get('/GenerosPosibles',async(req,res)=>{
+      var generos = await Controlador.Generos();
+      res.send(generos)
+    })
+
     app.post('/AnadirPelicula', async(req,res)=>{
 
         var pelicula = await Controlador.buscarPelicula(req.body._id);

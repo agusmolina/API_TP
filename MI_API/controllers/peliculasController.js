@@ -17,6 +17,11 @@ module.exports = {
          var resultado           = await CollectionPeliculas.insertOne(pelicula);
          return resultado;
       },
+      Generos: async function generos(){
+         var CollectionPeliculas = await client.movies();
+         var resultado           = await CollectionPeliculas.distinct('Genero')
+         return resultado
+      },
      Novedades:async function PeliculasNovedosas(){
       var CollectionPeliculas = await client.movies();
       var resultado           = await CollectionPeliculas.find({ 'Novedad': true}).toArray();
