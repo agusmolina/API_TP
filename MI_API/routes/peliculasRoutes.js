@@ -1,6 +1,7 @@
 //Librerias 
 const Controlador            = require('../controllers/peliculasController');
-const ErroresAPI             = require('../Modulos/ErroresAPI');
+const APIconstantes          = require('../Modulos/APIconstantes');
+
 
 
  //Rutas 
@@ -19,10 +20,10 @@ module.exports = function(app){
     });
     app.get('/BuscarPelicula/:id',async(req,res)=>{
       var movies = await Controlador.buscarPelicula(req.params.id);
-      if(typeof movies[0] === 'undefined'){
-        res.send(ErroresAPI.PeliculaNoExiste())
+      if(!movies){
+        res.send(APIconstantes.PeliculaNoExiste())
       }else{
-        res.send(movies[0]);
+        res.send(movies);
       }
     });
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
@@ -37,15 +38,21 @@ module.exports = function(app){
     app.post('/AnadirPelicula', async(req,res)=>{
         var pelicula = await Controlador.buscarPelicula(parseInt(req.body._id));
         if(pelicula._id != null && typeof pelicula != 'undefined'){
-          res.send(ErroresAPI.PeliculaYaExiste());
+          res.send(APIconstantes.PeliculaYaExiste());
         }else{
            var respuesta = await Controlador.anadirPelicula(req.body);
            res.send(respuesta);
         }
     })
     app.delete('/EliminarPelicula', async(req,res)=>{
-           var respuesta = await Controlador.eliminarPelicula(req.body._id); 
-           res.send({message: respuesta});
+         var pelicula  = await Controlador.buscarPelicula(parseInt(req.body._id))
+         if(!pelicula)
+         {
+          res.send(APIconstantes.PeliculaNoExiste())
+         }else{
+          var respuesta = await Controlador.eliminarPelicula(req.body._id);
+          res.send(APIconstantes.PeliculaEliminada(pelicula.Nombre));
+         }
     })
     
 }

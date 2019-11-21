@@ -28,21 +28,9 @@ module.exports = {
       return resultado
      },
      eliminarPelicula: async function eliminarPelicula(id) {
-        var CollectionPeliculas = await client.movies(),
-        pelicula                = await this.buscarPelicula(id),
-        resultado; 
-
-        if(typeof pelicula[0]._id === 'undefined' || pelicula[0] == null){
-            resultado = { error: true,
-                          status: 404,
-                          message: NoEncontrado + id.toString()}
-        }else{
-            await CollectionPeliculas.deleteOne({_id: id});
-            resultado = { error: false,
-                          status: "success",
-                          message: "La pelicula: "+pelicula[0].Nombre+" se ha eliminado satisfactoriamente"}
-        }
-        return resultado;
+        var CollectionPeliculas = await client.movies();
+        var EliminarPelicula    = await CollectionPeliculas.deleteOne({_id: id});
+        return EliminarPelicula;
         
   },
      actualizarPelicula: async function actualizarPelicula(id, actualizacion){
@@ -61,7 +49,7 @@ module.exports = {
 },
      buscarPelicula: async function buscarPelicula(id){
         var movies = await client.movies()
-        var mipelicula = await movies.find({"_id":parseInt(id)}).toArray();
+        var mipelicula = await movies.findOne({"_id":parseInt(id)});
         return mipelicula;
      },
      Recomendaciones: async function PeliculasRecomendadas(id){
