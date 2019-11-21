@@ -10,5 +10,5 @@ app.use(bodyParser.json());
 app.listen(port);
 
 console.log('Ha iniciado el servidor de la api en '+port);
-require('C:/Users/eleaz/Desktop/TP/MI_API/routes/peliculasRoutes')(app);
+require('../routes/peliculasRoutes')(app);
 
