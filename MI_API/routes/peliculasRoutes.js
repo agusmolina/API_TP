@@ -2,8 +2,7 @@
 const ControladorPeliculas   = require('../controllers/peliculasController');
 const ControladorUsuarios    = require('../controllers/UsuarioController');
 const APIconstantes          = require('../Modulos/APIconstantes');
-
-
+const Autenticar             = require('../base_de_datos/Autenticar');
 
  //Rutas 
 module.exports = function(app){
@@ -26,7 +25,7 @@ module.exports = function(app){
       }else{
         res.send(movies);
       }
-    });
+    })
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
       var Recomendaciones = await ControladorPeliculas.Recomendaciones(req.params.id);
       res.send(Recomendaciones);
@@ -37,13 +36,22 @@ module.exports = function(app){
     })
 
     app.post('/AnadirPelicula', async(req,res)=>{
-        var pelicula = await ControladorPeliculas.buscarPelicula(parseInt(req.body._id));
-        if(pelicula._id != null && typeof pelicula != 'undefined'){
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id);
+        if(typeof pelicula != 'undefined' && pelicula != null){
           res.send(APIconstantes.PeliculaYaExiste());
         }else{
            var respuesta = await ControladorPeliculas.anadirPelicula(req.body);
            res.send(respuesta);
         }
+      }catch (e){
+        res.send(e.message);
+      }
+    })
+    app.post('/Login', async (req,res)=>{
+      var resultado = await Autenticar.ValidarUsuario(parseInt(req.body.dni), parseInt(req.body.Contrasena));
+      res.send(resultado);
     })
     app.delete('/EliminarPelicula', async(req,res)=>{
          var pelicula  = await ControladorPeliculas.buscarPelicula(parseInt(req.body._id))
@@ -57,7 +65,7 @@ module.exports = function(app){
     })
     app.get('/Usuarios', async(req,res)=>{
          var usuarios = await ControladorUsuarios.Usuarios();
-         res.send(usuarios);
+         res.send(usuarios)
     });
     app.get('/BuscarUsuario/:id', async(req,res)=>{
          var usuario  = await ControladorUsuarios.BuscarUsuario(req.params.id);
