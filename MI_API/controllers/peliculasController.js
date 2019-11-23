@@ -1,5 +1,4 @@
 var client = require('../base_de_datos/Cliente')
-const NoEncontrado = "No se ha encontrado ninguna pelicula con id: ";
 
 module.exports = {
       Peliculas:  async function  peliculas () {
