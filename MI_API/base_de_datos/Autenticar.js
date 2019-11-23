@@ -23,9 +23,9 @@ module.exports = {
             resultado = APIConstantes.ContrasenaIncorrecta();
             }
         }else{
-            resultado = APIConstantes.UsuarioNoEncontrado(dni);
+            resultado = APIConstantes.UsuarioNoEncontrado();
         }
-    
+        console.log(resultado)
         return resultado;
     },
     ComprobarToken:  async (req) => {
