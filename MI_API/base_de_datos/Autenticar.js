@@ -30,7 +30,7 @@ module.exports = {
     },
     ComprobarToken:  async (req) => {
       try{
-      var token = req.headers['token-acceso'] || req.headers['autorizacion'];
+      var token = req.headers['token-acceso'] || req.headers['authorization'];
       if (token) {
        resultado = await jwt.verify(token, config.secret)
        return resultado;
