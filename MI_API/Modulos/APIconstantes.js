@@ -10,6 +10,24 @@ module.exports = {
            }
         return mensaje; 
     },
+    TokenInvalido: function(){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 403,
+            mensaje: 'El Token es invalido'
+           }
+        return mensaje; 
+    },
+    PeliculaInsertada: function(pelicula){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 403,
+            mensaje: 'la pelicula ha sido guardada exitosamente'
+           }
+        return mensaje; 
+    },
     PeliculaNoExiste: function() {
         var mensaje =  {
 

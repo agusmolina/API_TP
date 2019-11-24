@@ -25,12 +25,14 @@ module.exports = {
         }else{
             resultado = APIConstantes.UsuarioNoEncontrado();
         }
-        console.log(resultado)
         return resultado;
     },
     ComprobarToken:  async (req) => {
       try{
       var token = req.headers['token-acceso'] || req.headers['authorization'];
+      if (token.startsWith('Bearer ')) {
+        token = token.slice(7, token.length);
+      }
       if (token) {
        resultado = await jwt.verify(token, config.secret)
        return resultado;

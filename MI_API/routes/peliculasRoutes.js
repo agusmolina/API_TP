@@ -39,14 +39,14 @@ module.exports = function(app){
       try{
         await Autenticar.ComprobarToken(req,res)
         var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id);
-        if(typeof pelicula != 'undefined' && pelicula != null){
+        if(typeof pelicula !== 'undefined' && pelicula != null){
           res.send(APIconstantes.PeliculaYaExiste());
         }else{
            var respuesta = await ControladorPeliculas.anadirPelicula(req.body);
-           res.send(respuesta);
+           res.send(APIconstantes.PeliculaInsertada());
         }
       }catch (e){
-        res.send(e.message);
+        res.send(APIconstantes.TokenInvalido());
       }
     })
     app.post('/Login', async (req,res)=>{
