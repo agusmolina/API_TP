@@ -1,4 +1,4 @@
-
+const clc = require('cli-color');
 //Constantes de la api
 module.exports = {
     PeliculaYaExiste: function() {
@@ -9,6 +9,9 @@ module.exports = {
             mensaje: 'La Pelicula ya existe en la base de datos'
            }
         return mensaje; 
+    },
+    MetodoUsado: function(nombre){
+        console.log(clc.bold(clc.green("Se ha usado el metodo: "+ nombre)));
     },
     TokenInvalido: function(){
         var mensaje = 

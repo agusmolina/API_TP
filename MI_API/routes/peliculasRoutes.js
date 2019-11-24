@@ -9,14 +9,17 @@ module.exports = function(app){
     app.get('/Peliculas',async (req,res) => {
        var movies = await ControladorPeliculas.Peliculas()
        res.send(movies);
+       APIconstantes.MetodoUsado("Peliculas")
     });
     app.get('/PeliculasGenero/:Genero',async(req,res) => {
       var movies = await ControladorPeliculas.filtrarGenero(req.params.Genero);
        res.send(movies);
+       APIconstantes.MetodoUsado("PeliculasGenero")
     });
     app.get('/PeliculasNovedad',async(req,res) => {
       var movies = await ControladorPeliculas.Novedades();
       res.send(movies);
+      APIconstantes.MetodoUsado("PeliculasNovedad")
     });
     app.get('/BuscarPelicula/:id',async(req,res)=>{
       var movies = await ControladorPeliculas.buscarPelicula(req.params.id);
@@ -25,6 +28,7 @@ module.exports = function(app){
       }else{
         res.send(movies);
       }
+      APIconstantes.MetodoUsado("BuscarPelicula")
     })
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
       var Recomendaciones = await ControladorPeliculas.Recomendaciones(req.params.id);
