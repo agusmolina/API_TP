@@ -38,7 +38,32 @@ namespace FrontAPI.Controllers
         {
             return Peliculas().Max(item => item._id);
         }
+        public List<Usuario> GETUsuarios()
+        {
+            try
+            {
+                var url = baseuri + "Usuarios";
+                var webRequest = WebRequest.Create(url) as HttpWebRequest;
+                webRequest.ContentType = "application/json";
+                webRequest.UserAgent = "Nothing";
 
+                using (var s = webRequest.GetResponse().GetResponseStream())
+                {
+                    using (var sr = new StreamReader(s))
+                    {
+                        var UsuariosResponse = sr.ReadToEnd();
+                        var usuarios = JsonConvert.DeserializeObject<List<Usuario>>(UsuariosResponse);
+
+                        return usuarios;
+                    }
+                }
+            }
+            catch (WebException)
+            {
+                throw new ArgumentException("La API no esta corriendo...");
+            }
+
+        }
         public List<Pelicula> PeliculaNovedad()
         {
             string PeliculasNovedad = baseuri+"PeliculasNovedad";
@@ -243,13 +268,14 @@ namespace FrontAPI.Controllers
         }
         public ActionResult Recomendaciones()
         {
-            return View();
+            var usuarios = GETUsuarios();
+            return View(usuarios);
         }
         public ActionResult DetallePelicula(Int32 id)
         {
             try
             {
-                var url = baseuri + "BuscarPelicula/" + id;
+                var url      = baseuri + "BuscarPelicula/" + id;
                 var Pelicula = GET_PELICULA(url);
                 return View(Pelicula);
             }
@@ -258,6 +284,7 @@ namespace FrontAPI.Controllers
                 return View("Error", e);
             }
         }
+        
 
     }
 }

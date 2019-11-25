@@ -24,25 +24,30 @@
     </div>
     <div class="col-8">
         <div class="row">
-            <p style="font-weight:bold; margin-bottom:0px; font-size:28px;">@Model.Descripcion</p>
+            <p style="font-weight:bold; margin-bottom:0px; font-size:28px;">@Model.Nombre</p>
         </div>
         <div class="row">
             <i>Lanzamiento: @Model.Fecha</i>
         </div>
         <div class="row">
             <p style=" margin-bottom:0px; padding-top:10px;"><strong>Puntaje:</strong> @Model.Puntaje</p>
+
+        </div>
+        <div class="row">
+            <p style=" margin-bottom:0px; padding-top:10px;"><strong>Descripcion:</strong> @Model.Descripcion</p>
+
         </div>
         @if (Model.Novedad)
         {
-         <div class="row">
-            <p style=" margin-bottom:0px"><strong>Novedad:</strong> Si</p>
-        </div>
+            <div class="row">
+                <p style=" margin-bottom:0px"><strong>Novedad:</strong> Si</p>
+            </div>
         }
         else
         {
-        <div class="row">
-            <p style=" margin-bottom:0px"><strong>Novedad:</strong>  Si</p>
-        </div>
+            <div class="row">
+                <p style=" margin-bottom:0px"><strong>Novedad:</strong>  Si</p>
+            </div>
 
         }
 
@@ -55,7 +60,7 @@
         <div class="row">
             <strong style="font-size:25px; padding-top:10px; padding-bottom:20px">Trailer</strong>
         </div>
-        @if(Model.TrailerEmbed().Equals("NO DISPONIBLE"))
+        @if (Model.TrailerEmbed().Equals("NO DISPONIBLE"))
         {
             <strong style="font-size:20px">TRAILER NO DISPONIBLE</strong>
 
@@ -66,7 +71,7 @@
                 <iframe width="450" height="280" src="@Model.TrailerEmbed()"></iframe>
             </div>
         }
-       
+
     </div>
 </div>
 
