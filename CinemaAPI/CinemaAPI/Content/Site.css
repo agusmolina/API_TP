@@ -1,0 +1,31 @@
+﻿
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.sticky {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+}
+.sticky2 {
+    position: absolute;
+    margin: 0;
+    right: 150px;
+    top: 160px;
+}
+body {
+    background-image: url('https://cdn.24.co.za/files/Cms/General/d/8033/07653b2c234b4b538c23909d7fd70011.jpg')
+}

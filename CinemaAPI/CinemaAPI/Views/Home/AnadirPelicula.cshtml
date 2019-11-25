@@ -1,0 +1,92 @@
+﻿@using CinemaAPI.Models;
+@model AnadirPeliculaResponse
+
+
+<div class="row" style="padding-top:10px;">
+    <div class="col-8" style="background-color:white !important;border-radius:10px">
+        <form method="post" style="padding-left:20px;padding-bottom:20px;" action="@Url.Action("AnadirPelicula","Home")">
+            <h4 style="padding-top:20px;padding-left:10px">ANADIR PELICULA</h4>
+            <div class="form-row">
+                <div class="col-5" style="padding: 0px 15px !important">
+                    <label for="nombretxt">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Escriba nombre" name="Nombre" id="nombretxt">
+                </div>
+                <div class="col-5">
+                    <label for="descripciontxt">Genero</label>
+                    <select id="generotxt" name="Genero" class="form-control">
+                        <option id="default" selected>Selecciona un genero</option>
+                        @foreach (var item in ViewBag.GenerosPosibles)
+                        {
+                            <option id="item">@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" style="padding-top:10px;">
+                <div class="col-5" style="padding: 0px 15px !important">
+                    <label for="descripciontxt">Descripcion</label>
+                    <input type="text" id="descripciontxt"  class="form-control" placeholder="Escriba una Descripcion" name="Descripcion"/>
+                </div>
+                <div class="col-5">
+                    <label for="trailertxt">Trailer</label>
+                    <input type="text" class="form-control" placeholder="Direccion Trailer" name="Trailer" id="trailertxt">
+                </div>
+            </div>
+            <div class="form-row" style="padding-top:10px;">
+                <div class="col-5" style="padding: 0px 15px !important">
+                    <label for="fechatxt">Fecha Release</label>
+                    <input type="text" id="fechatxt" class="form-control" placeholder="DD/MM/YYYY" name="Fecha" />
+                </div>
+                <div class="col-5">
+                    <label for="puntajetxt">Puntaje</label>
+                    <input type="text" class="form-control" placeholder="7.." name="Puntaje" id="puntajetxt">
+                </div>
+            </div>
+            <div class="form-row" style="padding-top:10px;">
+                <div class="col-5" style="padding: 0px 15px !important">
+                    <label for="duraciontxt">Duracion</label>
+                    <input type="text" class="form-control" placeholder="2h.." name="Duracion" id="duraciontxt">
+                </div>
+                <div class="col-5">
+                    <label for="imagentxt">Imagen</label>
+                    <input id="imagentxt" class="form-control" type="text" name="Imagen" placeholder="http://imagen.com" />
+                </div>
+            </div>
+            <div class="form-row" style="padding-top:10px;">
+                <div class="col-5" style="padding: 0px 15px !important">
+                    <label for="repartotxt">Reparto</label>
+                    <textarea  id="repartotxt" class="form-control" rows="6" type="text" name="Reparto" placeholder="Leonardo Di Caprio, Julia Roberts, Jack Nicholson"></textarea>
+                </div>
+                <div class="col-5">
+                    <label for="tokentxt">Token</label>
+                    <input id="tokentxt" class="form-control" type="text" name="Token" style="margin-bottom:10px;"/>
+                    <button type="submit" class="btn btn-primary form-control">Anadir</button>
+                    <div class="form-check mb-2" style="padding-top:10px">
+                        <input class="form-check-input" type="checkbox" name="Novedad" id="novedadtxt">
+                        <label class="form-check-label" for="novedadtxt">Novedad</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    @if (Model != null)
+    {
+        if (Model.error)
+        {
+            <div class="col-4">
+                <h4 class="justify-content-end" style="padding-top:30px;">RESPUESTA API</h4>
+                <textarea class="form-control" rows="9" disabled>@Model.mensaje</textarea>
+                <img width="110" class="sticky2" height="130" src="~/Content/migif.gif" />
+            </div>
+
+        }
+        else
+        {
+        <div class="col-4">
+            <h4 class="justify-content-end" style="padding-top:30px;">RESPUESTA API</h4>
+            <textarea class="form-control" rows="9" disabled>@Model.mensaje</textarea>
+            
+        </div>
+        }
+    }
+</div>

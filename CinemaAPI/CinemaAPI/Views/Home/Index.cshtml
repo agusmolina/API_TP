@@ -1,0 +1,12 @@
+﻿@using CinemaAPI.Models;
+@model List<Pelicula>
+
+<div class="row" style="background-color: white;border-radius: 10px;padding-left: 20px;">
+   <div class=" col-12"><h4 style="padding-top:20px;">PELICULAS DISPONIBLES</h4></div>
+    @foreach (var item in Model)
+    {
+        <div class="col-auto" style="padding-top:5px">
+            <a href="@Url.Action("DetallePelicula","Home", new { id = @item._id })"><img src="@item.Imagen" width="150" height="165" style="border-radius:10px; cursor:pointer" /></a>
+        </div>
+    }
+</div>
