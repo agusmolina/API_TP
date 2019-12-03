@@ -40,6 +40,15 @@ module.exports = {
            }
         return mensaje; 
     },
+    PeliculaAnadida: function(pelicula){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 100,
+            mensaje: 'la pelicula ha sido añadida a favoritos'
+           }
+        return mensaje; 
+    },
     PeliculaNoExiste: function() {
         var mensaje =  {
 
@@ -64,6 +73,15 @@ module.exports = {
             error: true,
             codigo: 100,
             mensaje: "Comentario insertado exitosamente en la pelicula " + pelicula.Nombre
+           }
+        return mensaje; 
+    },
+    AgregadoAFavoritos: function(pelicula, usuario){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 100,
+            mensaje: "El usuario " + usuario.nombre + " ha agregado la pelicula " + pelicula.Nombre + "a favoritos"
            }
         return mensaje; 
     },

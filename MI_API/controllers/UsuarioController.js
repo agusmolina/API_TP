@@ -2,8 +2,8 @@ var client = require('../base_de_datos/Cliente')
 
 module.exports = {
     BuscarUsuario: async function buscarUsuario(id){
-        var CollectionUsuarios = client.usuarios();
-        var usuario            = CollectionUsuarios.findOne({"_id":parseInt(id)});
+        var CollectionUsuarios = await client.usuarios();
+        var usuario            = await CollectionUsuarios.findOne({"_id":parseInt(id)});
         return  usuario;
     },
     Usuarios: async function Usuarios(){

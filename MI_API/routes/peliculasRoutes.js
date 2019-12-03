@@ -38,6 +38,10 @@ module.exports = function(app){
       var generos = await ControladorPeliculas.Generos();
       res.send(generos)
     })
+
+    ////////////////////////////////
+    ///Recibe _id, <cualquier parametro perteneciente al objeto>
+    ////////////////////////////////
     app.post('/ActualizarPelicula', async(req,res)=>{
       try{
         await Autenticar.ComprobarToken(req,res)
@@ -88,6 +92,10 @@ module.exports = function(app){
          var usuario  = await ControladorUsuarios.BuscarUsuario(req.params.id);
          res.send(usuario);
     })
+
+    ////////////////////////////////
+    ///Recibe _id, usuario, comentario
+    ////////////////////////////////
     app.post('/AnadirComentario', async(req,res)=>{
       try{
         await Autenticar.ComprobarToken(req,res)
@@ -103,6 +111,28 @@ module.exports = function(app){
         res.send(APIconstantes.TokenInvalido());
       }
     })
+    
+    ////////////////////////////////
+    ///Recibe _id_pelicula, _id_usuario
+    ////////////////////////////////
+    app.post('/AnadirFavoritos', async(req,res)=>{
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id_pelicula);
+        var usuario = await ControladorUsuarios.BuscarUsuario(req.body._id_usuario);
+        
+         
+        var respuesta = await ControladorPeliculas.anadirFavoritos(pelicula, usuario);
+        res.send(APIconstantes.AgregadoAFavoritos(pelicula, usuario));
+     
+      }catch (e){
+        res.send(APIconstantes.TokenInvalido());
+      }
+    })
+
+    ////////////////////////////////
+    ///Recibe _id, Puntaje
+    ////////////////////////////////
     app.post('/PuntuarPelicula', async(req,res)=>{
       try{
         await Autenticar.ComprobarToken(req,res)

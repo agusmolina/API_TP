@@ -25,6 +25,15 @@ module.exports = {
          
          return resultado;
       },
+      anadirFavoritos: async function anadirFavoritos(pelicula, usuario){
+         var CollectionUsuarios = await client.usuarios();
+         var resultado           = await CollectionUsuarios.update(
+            { _id: usuario._id },
+            { $push: { Favoritos: pelicula.Nombre } },
+        )
+         
+         return resultado;
+      },
       Generos: async function generos(){
          var CollectionPeliculas = await client.movies();
          var resultado           = await CollectionPeliculas.distinct('Genero')
