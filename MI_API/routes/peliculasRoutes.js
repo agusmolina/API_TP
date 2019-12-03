@@ -75,5 +75,20 @@ module.exports = function(app){
          var usuario  = await ControladorUsuarios.BuscarUsuario(req.params.id);
          res.send(usuario);
     })
+    app.post('/AnadirComentario', async(req,res)=>{
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id);
+        if(typeof pelicula == 'undefined' || pelicula == null){
+          res.send(APIconstantes.PeliculaNoExiste());
+        }else{
+          
+           var respuesta = await ControladorPeliculas.anadirComentario(req.body);
+           res.send(APIconstantes.ComentarioInsertado(pelicula));
+        }
+      }catch (e){
+        res.send(APIconstantes.TokenInvalido());
+      }
+    })
     
 }

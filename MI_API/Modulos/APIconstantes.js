@@ -26,7 +26,7 @@ module.exports = {
         var mensaje = 
         {
             error: true,
-            codigo: 403,
+            codigo: 100,
             mensaje: 'la pelicula ha sido guardada exitosamente'
            }
         return mensaje; 
@@ -48,6 +48,15 @@ module.exports = {
             message: "La pelicula: "+NombrePelicula+" se ha eliminado satisfactoriamente"
             }
         return message 
+    },
+    ComentarioInsertado: function(pelicula){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 100,
+            mensaje: "Comentario insertado exitosamente en la pelicula " + pelicula.Nombre
+           }
+        return mensaje; 
     },
     UsuarioNoEncontrado: function(){
         var mensaje =  {

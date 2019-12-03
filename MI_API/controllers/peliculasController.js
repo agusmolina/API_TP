@@ -16,6 +16,15 @@ module.exports = {
          var resultado           = await CollectionPeliculas.insertOne(pelicula);
          return resultado;
       },
+      anadirComentario: async function anadir(pelicula){
+         var CollectionPeliculas = await client.movies();
+         var resultado           = await CollectionPeliculas.update(
+            { _id: pelicula._id },
+            { $push: { Comentarios: {usuario: pelicula.usuario, comentario: pelicula.comentario} } },
+        )
+         
+         return resultado;
+      },
       Generos: async function generos(){
          var CollectionPeliculas = await client.movies();
          var resultado           = await CollectionPeliculas.distinct('Genero')
