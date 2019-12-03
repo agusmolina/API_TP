@@ -31,6 +31,15 @@ module.exports = {
            }
         return mensaje; 
     },
+    PeliculaActualizada: function(pelicula){
+        var mensaje = 
+        {
+            error: true,
+            codigo: 100,
+            mensaje: 'la pelicula ha sido actualizada exitosamente'
+           }
+        return mensaje; 
+    },
     PeliculaNoExiste: function() {
         var mensaje =  {
 
@@ -57,6 +66,22 @@ module.exports = {
             mensaje: "Comentario insertado exitosamente en la pelicula " + pelicula.Nombre
            }
         return mensaje; 
+    },
+    PuntajeInvalido: function() {
+        var mensaje =  {
+            error: true,
+            codigo: 503,
+            mensaje: 'El puntaje debe estar entre 0 y 10'
+       }
+        return mensaje
+    },
+    PeliculaPuntuada: function() {
+        var mensaje =  {
+            error: true,
+            codigo: 100,
+            mensaje: 'Pelicula puntuada correctamente'
+       }
+        return mensaje
     },
     UsuarioNoEncontrado: function(){
         var mensaje =  {

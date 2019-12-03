@@ -41,20 +41,14 @@ module.exports = {
         return EliminarPelicula;
         
   },
-     actualizarPelicula: async function actualizarPelicula(id, actualizacion){
-        var CollectionPeliculas = await client.movies(),
-        query = {_id: id},
-        nuevos_valores = {$set:actualizacion},
-        pelicula  = await this.buscarPelicula(id);
-
-        if(typeof pelicula === 'undefined' || pelicula == null){
-         resultado = NoEncontrado + id.toString();
-       }else{
-         await CollectionPeliculas.updateOne(query,nuevos_valores);
-         resultado = "La pelicula: "+pelicula.Nombre+" se ha actualizado satisfactoriamente"
-       }
+     actualizarPelicula: async function actualizarPelicula(pelicula){
+      var CollectionPeliculas = await client.movies();
+      var resultado           = await CollectionPeliculas.update(
+         { _id: pelicula._id },
+         { $set: pelicula },
+     )
        return resultado;
-},
+      },
      buscarPelicula: async function buscarPelicula(id){
         var movies = await client.movies()
         var mipelicula = await movies.findOne({"_id":parseInt(id)});

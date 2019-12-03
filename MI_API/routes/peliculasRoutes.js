@@ -38,7 +38,20 @@ module.exports = function(app){
       var generos = await ControladorPeliculas.Generos();
       res.send(generos)
     })
-
+    app.post('/ActualizarPelicula', async(req,res)=>{
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id);
+        if(typeof pelicula == 'undefined' || pelicula == null){
+          res.send(APIconstantes.PeliculaNoExiste());
+        }else{
+           var respuesta = await ControladorPeliculas.actualizarPelicula(req.body);
+           res.send(APIconstantes.PeliculaActualizada(pelicula));
+        }
+      }catch (e){
+        res.send(APIconstantes.TokenInvalido());
+      }
+    })
     app.post('/AnadirPelicula', async(req,res)=>{
       try{
         await Autenticar.ComprobarToken(req,res)
@@ -85,6 +98,20 @@ module.exports = function(app){
           
            var respuesta = await ControladorPeliculas.anadirComentario(req.body);
            res.send(APIconstantes.ComentarioInsertado(pelicula));
+        }
+      }catch (e){
+        res.send(APIconstantes.TokenInvalido());
+      }
+    })
+    app.post('/PuntuarPelicula', async(req,res)=>{
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula = await ControladorPeliculas.buscarPelicula(req.body._id);
+        if(typeof pelicula == 'undefined' || pelicula == null){
+          res.send(APIconstantes.PeliculaNoExiste());
+        }else{
+           var respuesta = await ControladorPeliculas.actualizarPelicula(req.body);
+           res.send(APIconstantes.PeliculaPuntuada(pelicula));
         }
       }catch (e){
         res.send(APIconstantes.TokenInvalido());
