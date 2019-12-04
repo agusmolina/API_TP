@@ -75,14 +75,19 @@ module.exports = function(app){
       res.send(resultado);
     })
     app.delete('/EliminarPelicula', async(req,res)=>{
-         var pelicula  = await ControladorPeliculas.buscarPelicula(parseInt(req.body._id))
-         if(!pelicula)
-         {
+      try{
+        await Autenticar.ComprobarToken(req,res)
+        var pelicula  = await ControladorPeliculas.buscarPelicula(parseInt(req.body._id))
+        if(!pelicula)
+        {
           res.send(APIconstantes.PeliculaNoExiste())
-         }else{
+        }else{
           var respuesta = await ControladorPeliculas.eliminarPelicula(req.body._id);
           res.send(APIconstantes.PeliculaEliminada(pelicula.Nombre));
-         }
+        }
+      }catch (e){
+        res.send(APIconstantes.TokenInvalido());
+      }
     })
     app.get('/Usuarios', async(req,res)=>{
          var usuarios = await ControladorUsuarios.Usuarios();
