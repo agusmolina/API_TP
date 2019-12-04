@@ -18,9 +18,9 @@
     }
 }
 
-<div class="row" style="background-color:white; padding-top:20px;">
+<div class="row" style="background-color:white; padding-top:20px; padding-bottom:30px; padding-left:30px">
     <div class="col-auto">
-        <img src="@Model.Imagen"  width="250" height="260" />
+        <img src="@Model.Imagen"  width="300" height="340" style="border-radius:10px;padding-right:20px;"/>
     </div>
     <div class="col-8">
         <div class="row">
@@ -68,7 +68,7 @@
         else
         {
             <div class="row">
-                <iframe width="450" height="280" src="@Model.TrailerEmbed()"></iframe>
+                <iframe width="580" height="320" src="@Model.TrailerEmbed()"></iframe>
             </div>
         }
 

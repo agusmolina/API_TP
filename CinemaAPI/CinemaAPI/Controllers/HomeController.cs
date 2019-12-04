@@ -209,12 +209,12 @@ namespace FrontAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> GenerarToken(TokenParameters parametros)
+        public async Task<ActionResult> ResultadoToken(TokenParameters parametros)
         {
             try
             {
                 TokenResponse TokenGenerado = await TokenPost(parametros);
-                return View("GenerarToken", TokenGenerado);
+                return View(TokenGenerado);
             }catch (Exception e)
             {
                 return View("Error", e);
@@ -225,7 +225,7 @@ namespace FrontAPI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> AnadirPelicula(Pelicula pelicula, string Token)
+        public async Task<ActionResult> ResultadoPelicula(Pelicula pelicula, string Token)
         {
             try
             {
