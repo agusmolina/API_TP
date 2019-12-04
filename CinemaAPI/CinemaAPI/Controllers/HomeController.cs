@@ -64,6 +64,32 @@ namespace FrontAPI.Controllers
             }
 
         }
+        public Usuario GETUsuario(int id)
+        {
+            try
+            {
+                var url = baseuri + "BuscarUsuario/"+id;
+                var webRequest = WebRequest.Create(url) as HttpWebRequest;
+                webRequest.ContentType = "application/json";
+                webRequest.UserAgent = "Nothing";
+
+                using (var s = webRequest.GetResponse().GetResponseStream())
+                {
+                    using (var sr = new StreamReader(s))
+                    {
+                        var UsuariosResponse = sr.ReadToEnd();
+                        var usuarios = JsonConvert.DeserializeObject<Usuario>(UsuariosResponse);
+
+                        return usuarios;
+                    }
+                }
+            }
+            catch (WebException)
+            {
+                throw new ArgumentException("La API no esta corriendo...");
+            }
+
+        }
         public List<Pelicula> PeliculaNovedad()
         {
             string PeliculasNovedad = baseuri+"PeliculasNovedad";
@@ -111,6 +137,31 @@ namespace FrontAPI.Controllers
             try
             {
                 var webRequest = WebRequest.Create(url) as HttpWebRequest;
+                webRequest.ContentType = "application/json";
+                webRequest.UserAgent = "Nothing";
+
+                using (var s = webRequest.GetResponse().GetResponseStream())
+                {
+                    using (var sr = new StreamReader(s))
+                    {
+                        var peliculasResponse = sr.ReadToEnd();
+                        var peliculas = JsonConvert.DeserializeObject<List<Pelicula>>(peliculasResponse);
+
+                        return peliculas;
+                    }
+                }
+            }
+            catch (WebException)
+            {
+                throw new ArgumentException("La API no esta corriendo...");
+            }
+
+        }
+        public List<Pelicula> GETRecomendaciones(string url,int id)
+        {
+            try
+            {
+                var webRequest = WebRequest.Create(url+"/"+id) as HttpWebRequest;
                 webRequest.ContentType = "application/json";
                 webRequest.UserAgent = "Nothing";
 
@@ -270,6 +321,11 @@ namespace FrontAPI.Controllers
         {
             var usuarios = GETUsuarios();
             return View(usuarios);
+        }
+        public ActionResult RecomendacionesPeliculas(int selectUsuarios)
+        {
+            ViewBag.user = GETUsuario(selectUsuarios).nombre;
+            return View(GETRecomendaciones(baseuri + "PeliculasRecomendadas", selectUsuarios));
         }
         public ActionResult DetallePelicula(Int32 id)
         {

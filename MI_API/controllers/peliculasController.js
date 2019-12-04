@@ -65,7 +65,7 @@ module.exports = {
      },
      Recomendaciones: async function PeliculasRecomendadas(id){
         var usuarios = await client.usuarios();
-        var usuario  = await usuarios.findOne({},{_id: parseInt(id)});
+        var usuario  = await usuarios.findOne({_id: parseInt(id)});
 
         var peliculas        = await client.movies();
         var peliculaFavorita = await peliculas.findOne({'Nombre': usuario.PeliculaFavorita});
