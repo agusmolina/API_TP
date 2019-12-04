@@ -31,12 +31,15 @@ module.exports = function(app){
       APIconstantes.MetodoUsado("BuscarPelicula")
     })
     app.get('/PeliculasRecomendadas/:id',async(req,res)=>{
+      console.log(req.params.id)
       var Recomendaciones = await ControladorPeliculas.Recomendaciones(req.params.id);
       res.send(Recomendaciones);
+      APIconstantes.MetodoUsado("PeliculasRecomendadas")
     })
     app.get('/GenerosPosibles',async(req,res)=>{
       var generos = await ControladorPeliculas.Generos();
       res.send(generos)
+      APIconstantes.MetodoUsado("GenerosPosibles")
     })
 
     ////////////////////////////////
@@ -92,10 +95,12 @@ module.exports = function(app){
     app.get('/Usuarios', async(req,res)=>{
          var usuarios = await ControladorUsuarios.Usuarios();
          res.send(usuarios)
+         APIconstantes.MetodoUsado("Usuarios")
     });
     app.get('/BuscarUsuario/:id', async(req,res)=>{
          var usuario  = await ControladorUsuarios.BuscarUsuario(req.params.id);
          res.send(usuario);
+         APIconstantes.MetodoUsado("BuscarUsuario")
     })
 
     ////////////////////////////////

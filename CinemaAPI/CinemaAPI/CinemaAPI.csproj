@@ -242,6 +242,9 @@
     <Content Include="Views\Home\Recomendaciones.cshtml" />
     <Content Include="Views\Home\DetallePelicula.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\ResultadoToken.cshtml" />
+    <Content Include="Views\Home\ResultadoPelicula.cshtml" />
+    <Content Include="Views\Home\RecomendacionesPeliculas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

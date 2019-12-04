@@ -1,6 +1,17 @@
 ﻿@using CinemaAPI.Models
 @model List<Usuario>
-
-
-<h2>Recomendaciones</h2>
-
+    
+    <div class="row" style="padding-bottom:30px; padding-right:20px;padding-left:20px; border-radius:10px; background-color:white">
+        <form class="col-7" method="post" action="@Url.Action("RecomendacionesPeliculas","Home")">
+            <h4 style="font-weight:bold; font-family: 'Exo', sans-serif;padding-top:30px;padding-bottom:20px;">RECOMENDACIONES PARA USUARIOS</h4>
+            <div class="form-group">
+                <select class="form-control" id="usuarios" name="selectUsuarios">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item._id">@item.nombre</option>
+                    }
+                </select>
+            </div>
+            <button class="btn btn-success" type="submit">Buscar Recomendaciones</button>
+        </form>
+    </div>

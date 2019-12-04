@@ -7,13 +7,13 @@ module.exports = {
         return  usuario;
     },
     Usuarios: async function Usuarios(){
-        var CollectionUsuarios = client.usuarios();
-        var usuarios           = CollectionUsuarios.find({}).toArray();
+        var CollectionUsuarios = await client.usuarios();
+        var usuarios           = await CollectionUsuarios.find({}).toArray();
         return usuarios;
     },
     AnadirUsuario: async function Anadir(usuario){
-        var CollectionUsuarios = client.usuarios();
-        var resultado          = CollectionUsuarios.insertOne(usuario);
+        var CollectionUsuarios = await client.usuarios();
+        var resultado          = await CollectionUsuarios.insertOne(usuario);
         return resultado;
     }
 }

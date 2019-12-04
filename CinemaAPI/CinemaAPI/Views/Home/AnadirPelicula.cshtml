@@ -1,11 +1,8 @@
-﻿@using CinemaAPI.Models;
-@model AnadirPeliculaResponse
-
-
+﻿
 <div class="row" style="padding-top:10px;">
     <div class="col-8" style="background-color:white !important;border-radius:10px">
-        <form method="post" style="padding-left:20px;padding-bottom:20px;" action="@Url.Action("AnadirPelicula","Home")">
-            <h4 style="padding-top:20px;padding-left:10px">ANADIR PELICULA</h4>
+        <form method="post" style="padding-left:20px;padding-bottom:20px;" action="@Url.Action("ResultadoPelicula","Home")">
+            <h4 style="padding-top:20px;padding-left:10px;font-weight:bold; font-family: 'Exo', sans-serif;">ANADIR PELICULA</h4>
             <div class="form-row">
                 <div class="col-5" style="padding: 0px 15px !important">
                     <label for="nombretxt">Nombre</label>
@@ -69,24 +66,4 @@
             </div>
         </form>
     </div>
-    @if (Model != null)
-    {
-        if (Model.error)
-        {
-            <div class="col-4">
-                <h4 class="justify-content-end" style="padding-top:30px;">RESPUESTA API</h4>
-                <textarea class="form-control" rows="9" disabled>@Model.mensaje</textarea>
-                <img width="110" class="sticky2" height="130" src="~/Content/migif.gif" />
-            </div>
-
-        }
-        else
-        {
-        <div class="col-4">
-            <h4 class="justify-content-end" style="padding-top:30px;">RESPUESTA API</h4>
-            <textarea class="form-control" rows="9" disabled>@Model.mensaje</textarea>
-            
-        </div>
-        }
-    }
 </div>

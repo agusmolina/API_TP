@@ -5,10 +5,10 @@
 }
 
 
-<div class="row" style="padding-top:10px;">
-    <div class="col-4" style="padding: 20px 20px !important; background-color:white; border-radius:10px" >
-        <h4 style=" padding-top:5px; padding-bottom:10px">TOKEN AUTENTICACION</h4>
-        <form method="post" action="@Url.Action("GenerarToken", "Home")">
+<div class="row  justify-content-center" style="padding-top:10px;">
+    <div class="col-6 justify-content-center" style="padding: 20px 20px !important; background-color:white; border-radius:10px" >
+        <h4 style=" padding-top:5px; padding-bottom:10px;font-weight:bold; font-family: 'Exo', sans-serif;text-align:center">TOKEN AUTENTICACION</h4>
+        <form method="post" style="margin-left:130px; margin-bottom:30px" action="@Url.Action("ResultadoToken", "Home")">
         <div class="form-group">
             <label for="midni">Dni</label>
             <input type="text" class="form-control" id="midni" placeholder="Ingresa Dni" name="dni">
@@ -20,27 +20,4 @@
         <button type="submit" class="btn btn-primary">Generar Token</button>
         </form>
     </div>
-    @if (Model != null)
-    {
-        if (!Model.error)
-        {
-            <div class="col-auto" style="padding: 0px 0px !important;margin-left:10px; border-radius:10px; background-color:white" >
-                <div class="form-group" style="padding-left:20px; padding-right:20px; padding-top:20px">
-                    <label for="midni"><strong>Token Generado</strong></label>
-                    <input type="email" class="form-control" value="@Model.Token" disabled>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="col-auto" style="padding: 0px 0px !important;border-radius:10px; margin-left:10px; background-color:white">
-                <div class="form-group" style="padding-left:20px; padding-right:20px; padding-top:20px">
-                    <label for="midni"><strong>Ha Ocurrido un Error</strong></label>
-                    <textarea type="text" class="form-control" rows="5" disabled >@Model.mensaje</textarea>
-                </div>
-            </div>
-
-
-        }
-    }
 </div>

@@ -1,0 +1,26 @@
+﻿@using CinemaAPI.Models;
+@model TokenResponse
+@{
+    ViewBag.Title = "ResultadoToken";
+}
+
+@if (Model != null)
+{
+    if (!Model.error)
+    {
+        <div class="row" style="padding-bottom:30px; padding-right:20px;padding-left:20px; border-radius:10px; background-color:white">
+            <h4 style="font-weight:bold; font-family: 'Exo', sans-serif;padding-top:30px;padding-bottom:20px; padding-left:20px; text-align:center">TOKEN GENERADO</h4>
+            <input class="form-control col-12" value="@Model.Token" />
+        </div>
+    }
+    else
+    {
+        <div class="row" style="padding-bottom:30px; padding-right:20px;padding-left:20px; border-radius:10px; background-color:white">
+            <h4 style="font-weight:bold; font-family: 'Exo', sans-serif;padding-top:30px;padding-bottom:20px; padding-left:20px; text-align:center">HA OCURRIDO UN ERROR</h4>
+            <input class="form-control col-12" value="@Model.mensaje" />
+        </div>
+
+
+    }
+}
+
